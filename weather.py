@@ -65,3 +65,4 @@ if __name__ == '__main__':
 
 			print(convDate, ' || High - ', convTempHigh, '- Low - ', convTempLow,  '|| Weather: ', weather, '\n')
 			
+		time.sleep(3600)
