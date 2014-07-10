@@ -29,17 +29,17 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Weather forecast -default temp is in Fs add option -C for Cel')
 	
 	parser.add_argument('CityID',
-						 metavar='numbers',
-						 nargs='*',
-						 type=str, 
-						 help="Enter you city ID")
+			     metavar='numbers',
+			     nargs='*',
+			     type=str, 
+			     help="Enter you city ID")
 
 	parser.add_argument('-C',
-						'--Cel', 
-						dest='celCheck',
-						action='store_true',
-						default=False,
-						help='Changes temp to celcius')
+			    '--Cel', 
+			    dest='celCheck',
+			    action='store_true',
+			    default=False,
+			    help='Changes temp to celcius')
 
 	args = parser.parse_args()
 	cityID = args.CityID[0]
@@ -48,19 +48,20 @@ if __name__ == '__main__':
 	rawData = pullInfo(cityID)
 	city = rawData['city']['name']
 	conv = conversions()
-
-	print(city)
-	for info in rawData['list']:
-		
-		if celcheck == False:
-			convTempHigh = conv.convertToFh(info['temp']['max'])
-			convTempLow	= conv.convertToFh(info['temp']['min'])
-		else:
-			convTempHigh = conv.convertToCel(info['temp']['max'])
-			convTempLow = conv.convertToCel(info['temp']['min'])
-		
-		convDate = conv.convertUnixTime(info['dt'])
-		weather = info['weather'][0]['description']
-
-		print(convDate, ' || High - ', convTempHigh, '- Low - ', convTempLow,  '|| Weather: ', weather, '\n')
 	
+	while True:
+		print(city)
+		for info in rawData['list']:
+			
+			if celcheck == False:
+				convTempHigh = conv.convertToFh(info['temp']['max'])
+				convTempLow	= conv.convertToFh(info['temp']['min'])
+			else:
+				convTempHigh = conv.convertToCel(info['temp']['max'])
+				convTempLow = conv.convertToCel(info['temp']['min'])
+		
+			convDate = conv.convertUnixTime(info['dt'])
+			weather = info['weather'][0]['description']
+
+			print(convDate, ' || High - ', convTempHigh, '- Low - ', convTempLow,  '|| Weather: ', weather, '\n')
+			
