@@ -4,7 +4,6 @@ import argparse, datetime, json, time,  urllib.request
 
 
 def pullInfo(cityId):
-	print(cityId)
 	data = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/forecast/daily?id=%s' % cityId).read()
 	jdata = json.loads(data.decode('utf8'))
 	return(jdata)
